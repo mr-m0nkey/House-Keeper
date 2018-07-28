@@ -30,6 +30,12 @@ public class Main {
                     case "addrole":
                         Roles.addRole(event);
                         break;
+                    case "removerole":
+                        Roles.removeRole(event);
+                        break;
+                    case "rolereaction":
+                        Roles.setReactionMessage(event);
+                        break;
                     default:
                         System.out.println(CommandUtils.getMethod(message));
                         break;

@@ -10,7 +10,7 @@ public abstract class CommandUtils {
 
 
     public static boolean isCommand(String text){
-        return text.split(" ")[0].equalsIgnoreCase("#bot");
+        return text.split(" ")[0].equalsIgnoreCase("!bot");
     }
 
     public static String getMethod(String text){
