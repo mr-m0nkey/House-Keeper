@@ -1,2 +1,2 @@
 # House-Keeper
-A general purpose house keeping bot for my discord servers
+A general purpose bot for my discord servers
