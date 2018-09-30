@@ -1,10 +1,11 @@
 package com.macaca.housekeeper;
 
-import com.macaca.housekeeper.Tasks.Roles;
+import com.macaca.housekeeper.Commands.GetStatus;
 import com.macaca.housekeeper.Utils.CommandUtils;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.entity.message.MessageSet;
 
 public class Main {
 
@@ -20,29 +21,21 @@ public class Main {
         api = new DiscordApiBuilder().setToken(token).login().join();
         System.out.println("Logged in!");
 
+        setupCommands();
+        setupListeners();
 
-        api.addMessageCreateListener(event -> {
-            String message = event.getMessage().getContent();
-            System.out.println("You sent a message: " + message);
-            if(CommandUtils.isCommand(message)){
-                System.out.println("The message is a command");
-                switch (CommandUtils.getMethod(message)){
-                    case "addrole":
-                        Roles.addRole(event);
-                        break;
-                    case "removerole":
-                        Roles.removeRole(event);
-                        break;
-                    case "rolereaction":
-                        Roles.setReactionMessage(event);
-                        break;
-                    default:
-                        System.out.println(CommandUtils.getMethod(message));
-                        break;
-                }
-            }
+
+    }
+
+    private static void setupCommands(){
+        api.addMessageCreateListener(new GetStatus());
+    }
+
+    private static void setupListeners(){
+        api.addServerMemberLeaveListener(serverMemberLeaveEvent -> {
+            // TODO: 01/08/2018 set main channel
+            serverMemberLeaveEvent.getServer().getChannelsByNameIgnoreCase("general").get(0).asServerTextChannel().get()
+                    .sendMessage("Sayounara " + serverMemberLeaveEvent.getUser().getName());
         });
-
-
     }
 }
