@@ -4,6 +4,7 @@
 
 /build/
 /dist/
+/.idea/
 
 ### Java ###
 # Compiled class file
