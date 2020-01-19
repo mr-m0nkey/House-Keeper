@@ -35,7 +35,6 @@ public class ApplicationStart  {
     private MessageReceived messageReceived;
 
 
-    public static long startupTime;
 
 
 
@@ -64,8 +63,5 @@ public class ApplicationStart  {
         if (api.getYourself().hasDefaultAvatar()){
             api.updateAvatar(new File("files/profile.jpeg"));
         }
-        api.getCachedUserByNameAndDiscriminator("mr_m0nkey_", "8865").ifPresent(user -> {
-            user.sendMessage("Hello ma'am");
-        });
     }
 }
