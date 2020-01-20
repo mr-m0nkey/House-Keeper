@@ -1,16 +1,12 @@
 package com.macaca.housekeeper.Utils;
 
-import com.macaca.housekeeper.Main;
-import org.javacord.api.entity.message.Message;
-import org.javacord.api.entity.user.User;
 
-import java.util.Optional;
 
-public abstract class CommandUtils {
+public class CommandUtils {
 
 
     public static boolean isCommand(String text){
-        return text.split(" ")[0].equalsIgnoreCase("!bot");
+        return text.split(" ")[0].equalsIgnoreCase("!hk");
     }
 
     public static String getMethod(String text){
