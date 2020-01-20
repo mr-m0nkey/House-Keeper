@@ -32,7 +32,8 @@ public class Main {
         //logs in
         DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();
         System.out.println("Logged in!");
-        api.getOwner().join().sendMessage("I'm awake");
+        api.getOwner().thenAcceptAsync(user -> user.sendMessage("I'm awake"));
+
         return api;
     }
 }

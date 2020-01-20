@@ -20,9 +20,6 @@ import java.util.Date;
 public class MessageReceived implements MessageCreateListener {
 
     @Autowired
-    private DiscordApi api;
-
-    @Autowired
     private MessageEventService messageEventService;
 
     @Autowired
@@ -32,7 +29,7 @@ public class MessageReceived implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
         String message = messageCreateEvent.getMessage().getContent();
-        if(message.equalsIgnoreCase("!hk status")){
+        if(message.equalsIgnoreCase("!hk status")) {
             messageEventService.performStatusCommand(messageCreateEvent);
         } else if(message.toLowerCase().contains("prank") && messageCreateEvent.getMessage().isPrivate() && messageCreateEvent.getMessage().getAuthor().isBotOwner()) {
             messageEventService.performPrankCommand(messageCreateEvent);
